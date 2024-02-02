@@ -12,7 +12,6 @@ if (isset($_POST['registerUser'])) {
 
   if ($pass == $confirmPass) {
       $hash = password_hash($pass, PASSWORD_DEFAULT);
-      // INSERT INTO table_name (column1, column2, column3, ...)VALUES (value1, value2, value3, ...);
       $addUser = $conn->prepare("INSERT INTO users (u_fname, u_lname, u_email, u_pass) VALUES(?, ?, ?, ?)");
       $addUser->execute([
           $fname,
@@ -33,13 +32,11 @@ if (isset($_POST['login'])) {
   $u_email = $_POST['email'];
   $u_pass = $_POST['pass'];
 
-  // get the data on the database using the email input
   $getData = $conn->prepare("SELECT * FROM users WHERE u_email = ?");
   $getData->execute([$u_email]);
 
   foreach ($getData as $data) {
       if ($data['u_email'] == $u_email && password_verify($u_pass, $data['u_pass'])) {
-          session_start();
           $_SESSION['logged_in'] = true;
           $_SESSION['u_id'] = $data['u_id'];
 
