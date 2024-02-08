@@ -25,6 +25,7 @@ if(isset($_SESSION['logged_in'])){
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php } ?>
+             <h1>Client Information System</h1>
         <form action="process.php" method="post" class="border p-3 m-3">
             <div class="mb-3">
                 <label for="">Email</label>
